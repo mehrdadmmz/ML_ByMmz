@@ -69,8 +69,8 @@ class Perceptron:
             errors = 0 
             for xi, target in zip(X, y): 
                 update = self.eta * (target - self.predict(xi))
-                self.w_ = update * xi 
-                self.b_ = update 
+                self.w_ += update * xi 
+                self.b_ += update 
                 errors += int(update!=0.0)
             self.errors_.append(errors)
         return self
@@ -85,11 +85,19 @@ class Perceptron:
 
 
 if __name__ == "__main__": 
-  s = 'https://archive.ics.uci.edu/ml/'\
+  try: 
+    s = 'https://archive.ics.uci.edu/ml/'\
     'machine-learning-databases/iris/iris.data'
-  df = pd.read_csv(s, 
-                 header=None, 
-                 encoding="utf-8")
+    print("From url: ", s)
+    df = pd.read_csv(s, 
+                     header=None, 
+                     encoding="utf-8")
+except HTTPError: 
+    s = 'iris.data'
+    prtin("From local Iris path: ", s)
+    df = pd.read_csv(s, 
+                     header=None, 
+                     encoding="utf-8")
   
   # select setosa and versicolor
   y = df.iloc[0:100, 4].values
