@@ -175,6 +175,8 @@ plt.plot(range(1, len(ppn.errors_) + 1),
 plt.xlabel("Epochs")
 plt.ylabel("Number of updates")
 plt.show()
+
+# plotting decision boundaries using contourf 
 plot_decision_regions(X, y, classifier=ppn)
 plt.xlabel("Sepal length [cm]")
 plt.ylabel("Petal length [cm]")
