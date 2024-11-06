@@ -71,3 +71,25 @@ class AdalineGD:
     def predict(self, X): 
         """Return class label after unit step"""
         return np.where(self.activation(self.net_input(X)) >= 0.5, 1, 0)
+
+if __name__ == "__main__": 
+    # returns figure and Axes or array of Axes
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10, 4))
+    
+    ada1 = AdalineGD(n_iter=15, eta=0.1).fit(X, y)
+    ax[0].plot(range(1, len(ada1.loses_) + 1), 
+               np.log10(ada1.loses_), 
+               marker="o")
+    ax[0].set_xlabel("Epochs")
+    ax[0].set_ylabel("log(Mean squared error)")
+    ax[0].set_title("Adaline - Learning rate 0.1")
+    
+    ada2 = AdalineGD(n_iter=15, eta=0.0001).fit(X, y)
+    ax[1].plot(range(1, len(ada2.loses_) + 1), 
+               np.log10(ada2.loses_), 
+               marker="o")
+    ax[1].set_xlabel("Epochs")
+    ax[1].set_ylabel("log(Mean squared error)")
+    ax[1].set_title("Adaline - Learning rate 0.0001")
+    
+    plt.show()
