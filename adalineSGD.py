@@ -56,6 +56,14 @@ class AdalineSGD:
     
     def _shuffle(self, X, y): 
         """Shuffle training data"""
+        # generates a random permutation (reordering) of indices from 0 to len(y)-1.
+        # returns a randomly shuffled array of indices.
+        r = self.rgen.permutation(len(y))
+        # X[r] and y[r] reorder the input features X and labels y 
+        # based on the randomly shuffled indices stored in r.
+        # we will basically passing a new shuffled array of indicies to 
+        # X and y and they will be ordered based on the new indicies
+        return X[r], y[r]
         
     
     def _initialize_weights(self, m):
