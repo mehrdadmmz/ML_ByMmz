@@ -7,6 +7,8 @@ from matplotlib.colors import ListedColormap
 
 class AdalineSGD: 
     """ADAptive LInear NEuron classifier.
+    
+    Stochastic: Randomly Determined
 
     Parameters
     ------------
@@ -57,6 +59,7 @@ class AdalineSGD:
         
         """
         self._initialize_weights(X.shape[1])
+        # Average Loss 
         self.losses_ = []
         for i in range(self.n_iter): 
             if self.shuffle: 
@@ -94,6 +97,7 @@ class AdalineSGD:
     def _initialize_weights(self, m):
         """Initialize weights to small random numbers"""
         self.rgen = np.random.RandomState(self.random_state)
+        # m being the nunber of features we have in our dataset (X is n * m )
         self.w_ =  self.rgen.normal(loc=0.0, scale=0.01, size=m)
         self.b_ = np.float64(0.0)
         self.w_initialized = True
@@ -102,9 +106,13 @@ class AdalineSGD:
         """Apply adaline learning rule to update the weights"""
         output = self.activation(self.net_input(xi))
         error = target - output
-        self.w_ += self.eta * 2.0 * xi * (error)
-        self.b_ += self.eta * 2.0 * error
+        # now we won't be summing them because instead of taking care of 
+        # all the training examples, we now care only about one traing 
+        # example at a time 
+        self.w_ += self.eta * 2.0 * (error) * xi 
+        self.b_ += self.eta * 2.0 * (error)
         loss = error ** 2
+        # we return loss to keep track of the loss of each training example 
         return loss
     
     def net_input(self, X): 
@@ -167,28 +175,6 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                    )
     
 if __name__ == "__main__": 
-    try: 
-        s = 'https://archive.ics.uci.edu/ml/'\
-        'machine-learning-databases/iris/iris.data'
-        print("From url: ", s)
-        df = pd.read_csv(s, 
-                         header=None, 
-                         encoding="utf-8")
-    except HTTPError: 
-        s = 'iris.data'
-        prtin("From local Iris path: ", s)
-        df = pd.read_csv(s, 
-                         header=None, 
-                         encoding="utf-8")
-
-    # select setosa and versicolor
-    y = df.iloc[0:100, 4].values
-    y = np.where(y == "Iris-setosa", 0, 1)
-    
-    # extract sepal length and petal length
-    # X is now a matrix 100*2 
-    X = df.iloc[0:100, [0, 2]].values
-    
     ada_sgd = AdalineSGD(eta=0.01, n_iter=15, random_state=1)
     X_std = np.copy(X)
     X_std[:, 0] = (X[:, 0] - X[:, 0].mean()) / X[:, 0].std()
