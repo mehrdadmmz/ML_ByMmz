@@ -80,6 +80,30 @@ class AdalineGD:
         return np.where(self.activation(self.net_input(X)) >= 0.5, 1, 0)
 
 if __name__ == "__main__": 
+    try: 
+        s = 'https://archive.ics.uci.edu/ml/'\
+        'machine-learning-databases/iris/iris.data'
+        print("From url: ", s)
+        df = pd.read_csv(s, 
+                         header=None, 
+                         encoding="utf-8")
+        
+    except HTTPError: 
+        s = 'iris.data'
+        prtin("From local Iris path: ", s)
+        df = pd.read_csv(s, 
+                         header=None, 
+                         encoding="utf-8")
+
+    # select setosa and versicolor
+    y = df.iloc[0:100, 4].values
+    y = np.where(y == "Iris-setosa", 0, 1)
+    
+    # extract sepal length and petal length
+    # X is now a matrix 100*2 
+    X = df.iloc[0:100, [0, 2]].values
+
+
     # returns figure and Axes or array of Axes
     fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10, 4))
     
