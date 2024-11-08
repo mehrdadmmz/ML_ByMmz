@@ -167,6 +167,28 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                    )
     
 if __name__ == "__main__": 
+    try: 
+    s = 'https://archive.ics.uci.edu/ml/'\
+    'machine-learning-databases/iris/iris.data'
+    print("From url: ", s)
+    df = pd.read_csv(s, 
+                     header=None, 
+                     encoding="utf-8")
+    except HTTPError: 
+        s = 'iris.data'
+        prtin("From local Iris path: ", s)
+        df = pd.read_csv(s, 
+                         header=None, 
+                         encoding="utf-8")
+
+    # select setosa and versicolor
+    y = df.iloc[0:100, 4].values
+    y = np.where(y == "Iris-setosa", 0, 1)
+    
+    # extract sepal length and petal length
+    # X is now a matrix 100*2 
+    X = df.iloc[0:100, [0, 2]].values
+    
     ada_sgd = AdalineSGD(eta=0.01, n_iter=15, random_state=1)
     X_std = np.copy(X)
     X_std[:, 0] = (X[:, 0] - X[:, 0].mean()) / X[:, 0].std()
