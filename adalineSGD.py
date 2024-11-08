@@ -168,12 +168,12 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
     
 if __name__ == "__main__": 
     try: 
-    s = 'https://archive.ics.uci.edu/ml/'\
-    'machine-learning-databases/iris/iris.data'
-    print("From url: ", s)
-    df = pd.read_csv(s, 
-                     header=None, 
-                     encoding="utf-8")
+        s = 'https://archive.ics.uci.edu/ml/'\
+        'machine-learning-databases/iris/iris.data'
+        print("From url: ", s)
+        df = pd.read_csv(s, 
+                         header=None, 
+                         encoding="utf-8")
     except HTTPError: 
         s = 'iris.data'
         prtin("From local Iris path: ", s)
