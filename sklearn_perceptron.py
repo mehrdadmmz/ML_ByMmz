@@ -50,51 +50,78 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     linewidth=1,
                     marker='o',
                     s=100, 
-                    label='Test set')        
+                    label='Test set')
+        
+# 1 
+iris = datasets.load_iris()
 
-if __name__ == "__main__": 
-  iris = datasets.load_iris()
-  
-  X = iris.data[:, [2, 3]]
-  y = iris.target
-  
-  print("Class labels: ", np.unique(y))
-  
-  # stratify: If not None, data is split in a stratified fashion, using this as the class labels
-  X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                      test_size=0.3, 
-                                                      random_state=1, 
-                                                      stratify=y)
-  
-  print("Lebels counts in y        ", np.bincount(y))
-  print("Lebels counts in y_train  ", np.bincount(y_train))
-  print("Lebels counts in y_test   ", np.bincount(y_test))
-  
-  # feature scaling 
-  sc = StandardScaler()
-  # using fit method, we will estimate the mean and std of each feature dimension from the training data
-  sc.fit(X_train)
-  X_train_std = sc.transform(X_train) 
-  X_test_std = sc.transform(X_test)
-  # after standardizing the training data, now we can train a peceptron model 
-  ppn = Perceptron(eta0=0.1, random_state=1)
-  ppn.fit(X_train_std, y_train)
-  y_pred = ppn.predict(X_test_std)
-  print(f"Missclassified examples: {(y_test != y_pred).sum()}")
-  
-  # measuting the accuracy using the metric class
-  print(f"Accuracy {accuracy_score(y_test, y_pred):,.3}")
-  # combining the predict and accuracy_score and output the accuracy of a model 
-  print(f"Accuracy {ppn.score(X_test_std, y_test):,.3}")
-  
-  X_combined_std = np.vstack((X_train_std, X_test_std))
-  y_combined = np.hstack((y_train, y_test))
-  plot_decision_regions(X=X_combined_std, 
-                        y=y_combined, 
-                        classifier=ppn, 
-                        test_idx=range(105, 150))
-  plt.xlabel("Petal length [standardized]")
-  plt.ylabel("Petal width [standardized]")
-  plt.legend(loc="upper left")
-  plt.tight_layout()
-  plt.show()
+X = iris.data[:, [2, 3]]
+y = iris.target
+
+print("Class labels: ", np.unique(y))
+
+# stratify: If not None, data is split in a stratified fashion, using this as the class labels
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                  test_size=0.3, 
+                                                  random_state=1, 
+                                                  stratify=y)
+
+print("Lebels counts in y        ", np.bincount(y))
+print("Lebels counts in y_train  ", np.bincount(y_train))
+print("Lebels counts in y_test   ", np.bincount(y_test))
+
+# feature scaling 
+sc = StandardScaler()
+# using fit method, we will estimate the mean and std of each feature dimension from the training data
+sc.fit(X_train)
+X_train_std = sc.transform(X_train) 
+X_test_std = sc.transform(X_test)
+# after standardizing the training data, now we can train a peceptron model 
+ppn = Perceptron(eta0=0.1, random_state=1)
+ppn.fit(X_train_std, y_train)
+y_pred = ppn.predict(X_test_std)
+print(f"Missclassified examples: {(y_test != y_pred).sum()}")
+
+# measuting the accuracy using the metric class
+print(f"Accuracy {accuracy_score(y_test, y_pred):,.3}")
+# combining the predict and accuracy_score and output the accuracy of a model 
+print(f"Accuracy {ppn.score(X_test_std, y_test):,.3}")
+
+X_combined_std = np.vstack((X_train_std, X_test_std))
+y_combined = np.hstack((y_train, y_test))
+plot_decision_regions(X=X_combined_std, 
+                    y=y_combined, 
+                    classifier=ppn, 
+                    test_idx=range(105, 150))
+plt.xlabel("Petal length [standardized]")
+plt.ylabel("Petal width [standardized]")
+plt.legend(loc="upper left")
+plt.tight_layout()
+plt.show()
+
+
+# 2
+def sigmoid(z): 
+    return 1.0 / (1.0 + np.exp(-z))
+
+# let's plot the sigmoid func for values in the range -7 to 7 
+z = np.arange(-7, 7, 0.1)
+sigma_z = sigmoid(z)
+
+plt.plot(z, sigma_z)
+# Add a vertical line across the Axes.
+plt.axvline(0.0, color="k")
+plt.ylim(-0.1, 1.1)
+plt.xlabel("z")
+plt.ylabel("$\sigma (z)$")
+
+# y axis ticks and gridline 
+plt.yticks([0.0, 0.5, 1.0])
+# Get the current Axes. If there is currently no Axes on this Figure
+ax = plt.gca()
+ax.yaxis.grid(True)
+plt.tight_layout()
+plt.show()
+
+ 
+
