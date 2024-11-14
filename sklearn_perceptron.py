@@ -1,9 +1,12 @@
+import sys 
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.linear_model import Perceptron
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn import svm
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt 
 import numpy as np 
