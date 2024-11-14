@@ -115,7 +115,7 @@ if __name__ == "__main__":
                               classifier=lrgd)
         
         plt.xlabel("Petal length [standardized]")
-        plt.ylabel("Peal width [standardized]")
+        plt.ylabel("Petal width [standardized]")
         plt.legend(loc="best")
         plt.tight_layout()
         plt.show()
