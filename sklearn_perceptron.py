@@ -76,7 +76,7 @@ if __name__ == "__main__":
   sc.fit(X_train)
   X_train_std = sc.transform(X_train) 
   X_test_std = sc.transform(X_test)
-  # after standardizing the traing dat, now we can train a peceptron model 
+  # after standardizing the training data, now we can train a peceptron model 
   ppn = Perceptron(eta0=0.1, random_state=1)
   ppn.fit(X_train_std, y_train)
   y_pred = ppn.predict(X_test_std)
