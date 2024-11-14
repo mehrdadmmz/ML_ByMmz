@@ -1,7 +1,8 @@
 import numpy as np 
 
-def LogisticRegressionGD: 
-     """Gradient descent-based logistic regression classifier.
+class LogisticRegressionGD: 
+    """
+     Gradient descent-based logistic regression classifier.
 
         Parameters
         ------------
@@ -22,15 +23,15 @@ def LogisticRegressionGD:
           Bias unit after fitting.
         losses_ : list
            Log loss function values in each epoch.
+           
     """
-
     def __init__(self, eta=0.1, n_iter=50, random_state=1): 
         self.eta = eta 
         self.n_iter = n_iter
         self.random_state = random_state
         
     def fit(self, X, y):
-          """ Fit training data.
+        """ Fit training data.
 
             Parameters
             ----------
