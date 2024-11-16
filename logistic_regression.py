@@ -124,3 +124,7 @@ if __name__ == "__main__":
         # better way of obtaining the class label is by using the predict method 
         label_pred = lr.predict(X_test_std[:3, :])
         print("The class label of the first 3 flowers in the test data set are: ", label_pred)
+
+        # passing the class labels into the taget_nmes to get the actual class label name    
+        label_pred = lr.predict(X_test_std[:3, :])
+        print("The class label of the first 3 flowers in the test data set are: ", iris.target_names[label_pred])
