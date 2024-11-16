@@ -119,3 +119,8 @@ if __name__ == "__main__":
         plt.legend(loc="best")
         plt.tight_layout()
         plt.show()
+
+
+        # better way of obtaining the class label is by using the predict method 
+        label_pred = lr.predict(X_test_std[:3, :])
+        print("The class label of the first 3 flowers in the test data set are: ", label_pred)
