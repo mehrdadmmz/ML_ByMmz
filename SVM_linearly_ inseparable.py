@@ -54,34 +54,44 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     label='Test set')
 
 if __name__ == "__main__": 
-  np.random.seed(1)
+    np.random.seed(1)
 
-  X_xor = np.random.randn(200, 2)
-  y_xor = np.logical_xor(X_xor[:, 0] > 0, 
-                         X_xor[:, 1] > 0)
-  y_xor = np.where(y_xor, 1, 0)
-  
-  plt.scatter(X_xor[y_xor == 1, 0], 
-              X_xor[y_xor == 1, 1], 
-              c="royalblue", 
-              marker="s", 
-              label="Class1")
-  plt.scatter(X_xor[y_xor == 0, 0], 
-              X_xor[y_xor == 0, 1], 
-              c="tomato", 
-              marker="o", 
-              label="Class0")
-  plt.xlim([-3, 3])
-  plt.ylim([-3, 3])
-  plt.xlabel("Feature 1")
-  plt.ylabel("Feature 2")
-  plt.legend(loc="best")
-  plt.tight_layout()
-  plt.show()
+    X_xor = np.random.randn(200, 2)
+    y_xor = np.logical_xor(X_xor[:, 0] > 0, 
+                           X_xor[:, 1] > 0)
+    y_xor = np.where(y_xor, 1, 0)
 
-  svm = SVC(kernel="rbf", random_state=1, gamma=0.10, C=10.0)
-  svm.fit(X_xor, y_xor)
-  plot_decision_regions(X_xor, y_xor, classifier=svm)
-  plt.legend(loc="best")
-  plt.tight_layout()
-  plt.show()
+    # Create subplots
+    fig, ax = plt.subplots(1, 2, figsize=(12, 5))  # 1 row, 2 columns
+
+    # Plot the first scatter plot
+    ax[0].scatter(X_xor[y_xor == 1, 0], 
+                  X_xor[y_xor == 1, 1], 
+                  c="royalblue", 
+                  marker="s", 
+                  label="Class1")
+    ax[0].scatter(X_xor[y_xor == 0, 0], 
+                  X_xor[y_xor == 0, 1], 
+                  c="tomato", 
+                  marker="o", 
+                  label="Class0")
+    ax[0].set_xlim([-3, 3])
+    ax[0].set_ylim([-3, 3])
+    ax[0].set_xlabel("Feature 1")
+    ax[0].set_ylabel("Feature 2")
+    ax[0].legend(loc="best")
+    ax[0].set_title("Scatter Plot")
+
+    # Train SVM
+    svm = SVC(kernel="rbf", random_state=1, gamma=0.10, C=10.0)
+    svm.fit(X_xor, y_xor)
+
+    # Plot decision regions
+    plt.sca(ax[1])  # Set the second subplot as the current axis
+    plot_decision_regions(X_xor, y_xor, classifier=svm)
+    ax[1].legend(loc="best")
+    ax[1].set_title("Decision Regions")
+
+    # Adjust layout and show plots
+    plt.tight_layout()
+    plt.show()
