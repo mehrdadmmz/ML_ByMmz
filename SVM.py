@@ -51,37 +51,39 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     linewidth=1,
                     marker='o',
                     s=100, 
-                    label='Test set')        
+                    label='Test set')
 
-iris = datasets.load_iris()
-X = iris.data[:, [2, 3]]
-y = iris.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                    test_size=0.3, 
-                                                    stratify=y, 
-                                                    random_state=1)
-
-sc = StandardScaler()
-X_train_std = sc.fit_transform(X_train)
-X_test_std = sc.fit_transform(X_test)
-
-# Training a SVM model 
-svm = SVC(kernel="linear", 
-          C=1.0, 
-          random_state=1)
-svm.fit(X_train_std, y_train)
-
-X_combined_std = np.vstack((X_train_std, X_test_std))
-y_combined = np.hstack((y_train, y_test))
-plot_decision_regions(X_combined_std, 
-                      y_combined, 
-                      classifier=svm, 
-                      test_idx=range(105, 150))
-
-plt.title("SVM classifier on Iris data")
-plt.xlabel("Petal Length [standardized]")
-plt.ylabel("Petal Width [standardized]")
-plt.legend(loc="upper left")
-plt.tight_layout()
-plt.show()
+if __name__ == "__main__": 
+    
+    iris = datasets.load_iris()
+    X = iris.data[:, [2, 3]]
+    y = iris.target
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                        test_size=0.3, 
+                                                        stratify=y, 
+                                                        random_state=1)
+    
+    sc = StandardScaler()
+    X_train_std = sc.fit_transform(X_train)
+    X_test_std = sc.fit_transform(X_test)
+    
+    # Training a SVM model 
+    svm = SVC(kernel="linear", 
+              C=1.0, 
+              random_state=1)
+    svm.fit(X_train_std, y_train)
+    
+    X_combined_std = np.vstack((X_train_std, X_test_std))
+    y_combined = np.hstack((y_train, y_test))
+    plot_decision_regions(X_combined_std, 
+                          y_combined, 
+                          classifier=svm, 
+                          test_idx=range(105, 150))
+    
+    plt.title("SVM classifier on Iris data")
+    plt.xlabel("Petal Length [standardized]")
+    plt.ylabel("Petal Width [standardized]")
+    plt.legend(loc="upper left")
+    plt.tight_layout()
+    plt.show()
