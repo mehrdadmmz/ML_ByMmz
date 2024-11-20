@@ -62,7 +62,7 @@ if __name__ == "__main__":
                                                       random_state=1)
   sc = StandardScaler()
   X_train_std = sc.fit_transform(X_train) 
-  X_test = sc.transform(X_test)
+  X_test_std = sc.transform(X_test)
   
   # Create subplots
   fig, ax = plt.subplots(1, 2, figsize=(12, 5))
