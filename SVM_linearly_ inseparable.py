@@ -54,6 +54,8 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     label='Test set')
 
 if __name__ == "__main__": 
+    # Let's create a linearly inseprable data 100 with class label of 1 and 100 with class label of 0
+
     np.random.seed(1)
 
     X_xor = np.random.randn(200, 2)
