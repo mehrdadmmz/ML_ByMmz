@@ -50,7 +50,7 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     s=100, 
                     label='Test set')        
 
-if __name__ == "__mian__": 
+if __name__ == "__main__": 
   # Let's apply rbf kernel of svm into our iris dataset
   iris = datasets.load_iris()
   X = iris.data[:, [2, 3]] # Petal Length and Petal Width 
