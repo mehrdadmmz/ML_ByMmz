@@ -84,3 +84,6 @@ tree.plot_tree(tree_model,
                feature_names=feature_names, 
                filled=True)
 plt.show()
+
+print(f"Training accuracy: {tree_model.score(X_train, y_train):.2f}")
+print(f"Test accuracy: {tree_model.score(X_test, y_test):.2f}")
