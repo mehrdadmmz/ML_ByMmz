@@ -1,3 +1,11 @@
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt 
+from matplotlib.colors import ListedColormap
+import numpy as np
 
 # from sklearn.tree import DecisionTreeClassifier
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
@@ -68,4 +76,11 @@ plt.xlabel("Petal Length [cm]")
 plt.ylabel("Petal Width [cm]")
 plt.legend(loc="upper left")
 plt.tight_layout()
+plt.show()
+
+feature_names = ["Sepal Length", "Sepal Width", 
+                 "Petal Length", "Petal Width"]
+tree.plot_tree(tree_model, 
+               feature_names=feature_names, 
+               filled=True)
 plt.show()
