@@ -50,7 +50,8 @@ y = iris.target
 X_train, X_test, y_train, y_test = train_test_split(X, 
                                                     y, 
                                                     test_size=0.3, 
-                                                    random_state=1)
+                                                    random_state=1, 
+                                                    stratify=y)
 
 tree_model = DecisionTreeClassifier(criterion="gini", 
                                     max_depth=4, 
