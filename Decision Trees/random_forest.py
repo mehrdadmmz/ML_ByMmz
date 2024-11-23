@@ -1,5 +1,12 @@
-# building a random forest (ensemble method of decision trees)
-# from sklearn.ensemble import RandomForestClassifier
+import numpy as np 
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt 
+from matplotlib.colors import ListedColormap
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
     
@@ -54,6 +61,7 @@ if __name__ == "__main__":
                                                       test_size=0.3, 
                                                       random_state=1, 
                                                       stratify=y)
+
   # n_estimator = the # of trees in the forest.
   # n_jobs = allows us to parallelize the model training using multiple cores of our computer
   # criterion is gini by default
