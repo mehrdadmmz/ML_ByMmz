@@ -49,3 +49,34 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
                     s=100, 
                     label='Test set')  
 
+iris = datasets.load_iris()
+X = iris.data[:, [2, 3]] # Petal Length and Petal Width 
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, 
+                                                    y, 
+                                                    test_size=0.3, 
+                                                    random_state=1, 
+                                                    stratify=y)
+sc = StandardScaler()
+X_train_std = sc.fit_transform(X_train)
+X_test_std = sc.transform(X_test)
+
+knn = KNeighborsClassifier(n_neighbors=5, 
+                           p=2, 
+                           metric="minkowski")
+
+knn.fit(X_train_std, y_train)
+
+X_combined_std = np.vstack((X_train_std, X_test_std)) 
+y_combined = np.hstack((y_train, y_test))
+plot_decision_regions(X_combined_std, 
+                      y_combined, 
+                      classifier=knn, 
+                      test_idx=range(105, 150))
+plt.xlabel("Petal Length [Standardized]")
+plt.ylabel("Petal Width [Standardized]")
+plt.legend(loc="upper left")
+plt.tight_layout()
+plt.show()
+
