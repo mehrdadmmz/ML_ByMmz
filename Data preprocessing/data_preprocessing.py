@@ -20,6 +20,8 @@ imr = imr.fit(df.values)
 imputed_data = imr.transform(df.values)
 imputed_data
 
+# new dataframe with ordinal, non-ordinal, and numercial features
+# also it has non-ordinal class labels
 df = pd.DataFrame([
     ["green", "M", 10.1, "class2"], 
     ["red", "L", 13.5, "class1"], 
@@ -33,3 +35,4 @@ df["size"] = df["size"].map(size_mapping)
 # encoding class labels
 class_mapping = {label: idx for idx, label in enumerate(np.unique(df["classlabel"]))}
 df["classlabel"] = df["classlabel"].map(class_mapping)
+
