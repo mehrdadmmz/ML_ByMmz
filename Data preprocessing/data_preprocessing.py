@@ -20,7 +20,7 @@ imr = imr.fit(df.values)
 imputed_data = imr.transform(df.values)
 imputed_data
 
-# new dataframe with ordinal, non-ordinal, and numercial features
+# new dataframe with ordinal, nominal , and numercial features
 # also it has non-ordinal class labels
 df = pd.DataFrame([
     ["green", "M", 10.1, "class2"], 
