@@ -49,7 +49,7 @@ decoded_labels = class_le.inverse_transform(encoded_labels)
 decoded_labels
 
 
-# performing one-hotencoding on color feature
+# performing one-hot encoding on color feature
 # Color one-hot encoder
 # unique values of color col will be sorted as blue, green, red in this order 
 color_ohe = OneHotEncoder()
@@ -65,5 +65,7 @@ c_transf.fit_transform(X).astype(float)
 
 # an easier way of doing this using pd.get_dummies() which will 
 # conversation only string columns and leave all other columns unchanged
-pd.get_dummies(df[["price", "color", "size"]])
+# dropping the first col as well to reduce correlation among variabels  
+pd.get_dummies(df[["price", "color", "size"]], 
+               drop_first=True)
 
