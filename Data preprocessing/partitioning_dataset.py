@@ -26,9 +26,31 @@ print('Class labels', np.unique(df_wine['Class label']))
 
 X, y = df_wine.iloc[:, 1:], df_wine.iloc[:, 0]
 
-# providing the class lebel array y as an argument to stratify enusres that both training and tes datasets have the same class proportions as the original dataset
+# providing the class lebel array y as an argument to stratify enusres that both 
+# training and tes datasets have the same class proportions as the original dataset
 X_train, X_test, y_train, y_test = train_test_split(X, 
                                                     y,
                                                     test_size= 0.3, 
                                                     random_state=0, 
                                                     stratify=y) 
+
+# Normalization: MinMaxSclaer
+# When features need to be bounded within a specific range.
+# For models sensitive to the magnitude of features (e.g., Neural Networks, KNN).
+mms = MinMaxScaler()
+X_train_norm = mms.fit_transform(X_train) 
+X_test_norm = mms.transform(X_test)
+
+# Standardization: StandardScaler 
+# For algorithms that assume or benefit from standardization (e.g., PCA, SVMs).
+# When features are roughly Gaussian-distributed.
+stdsc = StandardScaler()
+X_train_std = stdsc.fit_transform(X_train) 
+X_test_std = stdsc.transform(X_test)
+
+# Robust Sclaer: RobustSclaer
+# When the dataset contains significant outliers.
+# When you want a scaling method that minimizes the influence of extreme values.
+rbstsc = RobustScaler()
+X_train_rbst = rbstsc.fit_transform(X_train)
+X_test_rbst = rbstsc.transform(X_test)
