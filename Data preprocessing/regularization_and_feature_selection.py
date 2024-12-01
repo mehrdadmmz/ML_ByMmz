@@ -52,5 +52,16 @@ lr.fit(X_train_std, y_train)
 print("Training accuracy: ", lr.score(X_train_std, y_train))
 print("Test accuracy: ", lr.score(X_test_std, y_test))
 
+# bias array
+# Since we fit the LogisticRegression object on a multiclass dataset via the one-versus-rest (OvR)
+# approach, the first intercept belongs to the model that fits class 1 versus classes 2 and 3, the second
+# value is the intercept of the model that fits class 2 versus classes 1 and 3, and the third value is the
+# intercept of the model that fits class 3 versus classes 1 and 2.
 print(lr.intercept_)
+
+# weight array 
+# The weight array that we accessed via the lr.coef_ attribute contains three rows of weight coefficients,
+# one weight vector for each class. Each row consists of 13 weights, where each weight is multiplied by
+# the respective feature in the 13-dimensional Wine dataset to calculate the net input: 
+# z = w1x1 + w2x2 + ... + wmxm = sum(xjwj) from j=1 to j=m and then + b 
 print(lr.coef_)
