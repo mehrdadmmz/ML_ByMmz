@@ -52,6 +52,8 @@ lr.fit(X_train_std, y_train)
 print("Training accuracy: ", lr.score(X_train_std, y_train))
 print("Test accuracy: ", lr.score(X_test_std, y_test))
 
+# In sklearn .intercept_ corresponds to the bias and coef_ corresponds to the values Wj
+
 # bias array
 # Since we fit the LogisticRegression object on a multiclass dataset via the one-versus-rest (OvR)
 # approach, the first intercept belongs to the model that fits class 1 versus classes 2 and 3, the second
