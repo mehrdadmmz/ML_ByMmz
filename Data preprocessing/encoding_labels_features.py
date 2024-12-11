@@ -54,7 +54,7 @@ decoded_labels
 # unique values of color col will be sorted as blue, green, red in this order
 # also we will be dropping the first column to reduce correlation among variables 
 color_ohe = OneHotEncoder(categories='auto', drop='first')
-color_ohe.fit_transform(X[:, 0].reshape(-1, 1)).toarray(
+color_ohe.fit_transform(X[:, 0].reshape(-1, 1)).toarray()
 
 # transforming columns in a multi-feature array
 # modifying the first column feature (colors) and keeping the the other two columns the same as it is
