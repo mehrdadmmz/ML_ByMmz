@@ -66,7 +66,7 @@ if __name__ == "__main__":
     
     sc = StandardScaler()
     X_train_std = sc.fit_transform(X_train)
-    X_test_std = sc.fit_transform(X_test)
+    X_test_std = sc.transform(X_test)
     
     # Training a SVM model 
     svm = SVC(kernel="linear", 
