@@ -64,6 +64,7 @@ y = iris.target
 print("Class labels: ", np.unique(y))
 
 # stratify: If not None, data is split in a stratified fashion, using this as the class labels
+#stratify makes sure that both training and test dataset have the same class proportion as the original dataset 
 X_train, X_test, y_train, y_test = train_test_split(X, y, 
                                                   test_size=0.3, 
                                                   random_state=1, 
