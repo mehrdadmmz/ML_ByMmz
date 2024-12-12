@@ -67,7 +67,15 @@ X_test_std = sc.transform(X_test)
 # solving optimization problem using: 
 # solver = "limited Broyden, Fletcher, Goldfarb and Shanno" algorithms which is great for multiclass 
 # Parameter C controls the strength of regularization and is inversly proportioal to the lambda whichi 
-# is the reg parameter. higher C, lower reg. lower C, higher reg. 
+# is the reg parameter. higher C, lower reg. lower C, higher reg.
+# In LogisticRegression, the parameter C controls the strength of the regularization applied to the model.
+# Regularization is a technique that helps prevent the model from overfitting by penalizing overly complex or large coefficient values.
+# The parameter C is actually the inverse of the regularization strength.
+# If C is large (e.g., 100), you are essentially telling the model "apply less regularization." This allows the model’s 
+# coefficients to grow larger if needed, which can make the model more flexible and potentially fit the training data more 
+# closely. However, it can also increase the risk of overfitting.
+# If C is small (e.g., 0.01), you are telling the model "apply more regularization." This constrains the coefficients to 
+# remain smaller, helping to generalize better and reduce overfitting, but sometimes at the cost of fitting the data less precisely.
 lr  = LogisticRegression(C=100.0, 
                          solver="lbfgs", 
                          multi_class="ovr") # can also be: multi_class="multinomial" 
