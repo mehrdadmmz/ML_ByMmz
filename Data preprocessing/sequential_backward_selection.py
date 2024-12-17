@@ -42,15 +42,30 @@ class SBS:
         # List of scores, starting with full feature set score that we added as the first score in the list
         self.scores_ = [score]
 
+        """Checking on all combinations of indices and keep track of the ones which we wanna remove later
+        till we get the number of features we are looking for"""
         while dim > self.k_features:
             scores = []  # List to store scores for each candidate subset
             subsets = []  # List to store subsets of features
 
+            """
+            combinations generates subsets of size dim−1 at each iteration (removing one feature at a time).
+            for x in combinations("012", 2): 
+                print(x)
+    
+                ('0', '1')
+                ('0', '2')
+                ('1', '2')
+            """
             for p in combinations(self.indices_, r=dim - 1):
+                # calculating the score of each combination and then append them to the list to keep track of
                 score = self._calc_score(X_train, y_train, X_test, y_test, p)
-                scores.append(scores)
+                scores.append(score)
+                # appending the combination to the subsets list
                 subsets.append(p)
 
+            # best combination based on their associated score
+            # np.argmax: Returns the indices of the maximum values along an axis.
             best = np.argmax(scores)
             self.indices_ = subsets[best]
             self.subsets_.append(self.indices_)
