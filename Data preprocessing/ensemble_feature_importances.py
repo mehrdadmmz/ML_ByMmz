@@ -69,10 +69,10 @@ indices = np.argsort(importances)[::-1]
 
 # Print feature ranking
 print("Feature ranking based on importance:\n")
-for f in range(X_train.shape[1]): 
-    print("%2d) %-*s %f" % (f + 1, 30,   # f + 1 is rank number, %-*s aligns text
-                            feat_labels[indices[f]],  # Feature name
-                            importances[indices[f]]))  # Feature importance score
+for rank, idx in enumerate(indices, start=1):
+    feature_name = feat_labels[idx]
+    importance_score = importances[idx]
+    print(f"{rank:2d}) {feature_name:30} {importance_score:.6f}")
 
 # ------------------------------
 # STEP 5: Plot Feature Importances
