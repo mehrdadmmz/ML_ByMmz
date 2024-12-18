@@ -13,6 +13,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Initialize the classifier
 knn = KNeighborsClassifier(n_neighbors=3)
 
+# Sequential Feature Selector
 # Perform SBS (Sequential Backward Selection)
 sbs = SFS(knn, 
           k_features=2,                # Desired number of features
