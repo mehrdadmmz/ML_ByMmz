@@ -27,6 +27,7 @@ sbs = sbs.fit(X_train, y_train)
 
 # Get the selected feature indices
 print(f"Selected feature indices: {sbs.k_feature_idx_}")
+print(f"Selected feature names: {sbs.k_feature_names_}")
 print(f"Feature performance (accuracy): {sbs.k_score_}")
 
 # Transform the data to retain only selected features
