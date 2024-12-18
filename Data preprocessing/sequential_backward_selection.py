@@ -160,7 +160,7 @@ if __name__ == "__main__":
     k3 = list(sbs.subsets_[10])
     print(df_wine.columns[1:][k3])
 
-    # KNN performance on the original dataset
+    # KNN performance on the original dataset with 13 features 
     knn.fit(X_train_std, y_train)
     print("Training accuracy: ", knn.score(X_train_std, y_train))
     print("Testing accuracy: ", knn.score(X_test_std, y_test))
