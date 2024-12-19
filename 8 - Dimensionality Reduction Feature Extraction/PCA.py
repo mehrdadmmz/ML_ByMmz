@@ -97,3 +97,18 @@ print("Matrix W:\n", w)
 # X' is now transformed into PCA subspace (the principal components one and two)
 X_train_pca = X_train_std.dot(W)
 print("The transformed dataset: ", X_train_pca)
+
+# plot the transformed Wine training dataset, now stored as 124 * 2-dimension
+colors = ['r', 'b', 'g']
+markers = ['o', 's', '^']
+
+for l, c, m in zip(np.unique(y_train), colors, markers): 
+    plt.scatter(X_train_pca[y_train == l, 0],  # Filter for the current class label `l`
+                X_train_pca[y_train == l, 1],
+                c=c, label=f"Class {l}", marker=m)
+
+plt.xlabel("PC 1")
+plt.ylabel("PC 2")
+plt.legend(loc="lower left")
+plt.tight_layout()
+plt.show()
