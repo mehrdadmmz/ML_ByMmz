@@ -1,5 +1,6 @@
 import pandas as pd 
 import numpy as np 
+import matplotlib.pyplot as plt 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
@@ -57,3 +58,22 @@ eigen_vals, eigen_vecs = np.linalg.eig(cov_mat)
 # eigen_vals is a row vector of 13 elements which represent the eigen values
 # corresponding eigen vectors is stored as columns in a 13 * 13 dim matrix in eigen_vecs
 print("\nEigenvalues \n", eigen_vals)
+
+# Explained variance ratio = lambda j / sum of lambdas j such that j = 1 to j = d
+tot = sum(eigen_vals)
+var_exp = [(i / tot) for i in sorted(eigen_vals, reverse=True)]
+
+# cumulative sum of explained variances
+cum_var_exp = np.cumsum(var_exp)
+
+# plotting (indiv exp var)
+plt.bar(range(1, 14), var_exp, align="center", label="Individual explained variance")
+
+# plotting (cumulative exp var)
+plt.step(range(1, 14), cum_var_exp, where="mid", label="Cumulative explained variance")
+
+plt.ylabel("Explained variance ratio")
+plt.xlabel("Principal component index")
+plt.legend(loc='best')
+plt.tight_layout()
+plt.show()
