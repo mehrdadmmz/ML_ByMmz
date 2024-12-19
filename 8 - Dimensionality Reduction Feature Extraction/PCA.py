@@ -78,3 +78,16 @@ plt.xlabel("Principal component index")
 plt.legend(loc='best')
 plt.tight_layout()
 plt.show()
+
+# Make a list of (eigenvalue, eigenvector) tuples
+eigen_pairs = [(np.abs(eigen_vals[i]), eigen_vecs[:, i]) for i in range(len(eigen_vals))]
+
+# Sort the (eigenvalue, eigenvector) tuples from high to low (descending)
+eigen_pairs.sort(key=lambda k: k[0], reverse=True)
+
+# Building the W matrix (projection matrix d * k dim) by grabbing the k biggest eigenvectors associated with the k biggest eigenvalues
+w = np.hstack((eigen_pairs[0][1][:, np.newaxis], 
+               eigen_pairs[1][1][:, np.newaxis]))
+
+# 13 by 2 matrix so now we can convert dataset from 13 features down to 2
+print("Matrix W:\n", w)
