@@ -91,3 +91,9 @@ w = np.hstack((eigen_pairs[0][1][:, np.newaxis],
 
 # 13 by 2 matrix so now we can convert dataset from 13 features down to 2
 print("Matrix W:\n", w)
+
+# transforming the entire dataset 
+# X' = XW (X' is now in the shape of 124 * 2 which means has only 2 features)
+# X' is now transformed into PCA subspace (the principal components one and two)
+X_train_pca = X_train_std.dot(W)
+print("The transformed dataset: ", X_train_pca)
