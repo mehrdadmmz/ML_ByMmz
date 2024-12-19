@@ -59,8 +59,9 @@ eigen_vals, eigen_vecs = np.linalg.eig(cov_mat)
 # corresponding eigen vectors is stored as columns in a 13 * 13 dim matrix in eigen_vecs
 print("\nEigenvalues \n", eigen_vals)
 
-# Explained variance ratio = lambda j / sum of lambdas j such that j = 1 to j = d
-tot = sum(eigen_vals)
+# The variance explained ratio of an eigenvalue, 𝜆𝑗, is simply the
+# fraction of an eigenvalue, 𝜆𝑗, and the total sum of the eigenvalues
+# Explained variance ratio = lambda j / sum of lambdas j such that j = 1 to j = dtot = sum(eigen_vals)
 var_exp = [(i / tot) for i in sorted(eigen_vals, reverse=True)]
 
 # cumulative sum of explained variances
