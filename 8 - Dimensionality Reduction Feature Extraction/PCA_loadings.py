@@ -68,6 +68,7 @@ n_features = X_train_std.shape[1]
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 
+# PC 1
 plt.sca(axes[0])
 plt.bar(range(n_features), sklearn_loadings[:, 0], align="center")
 plt.title("Loadings for PC 1")
@@ -76,6 +77,7 @@ plt.xticklabels(df_wine.columns[1:], rotation=90)
 plt.ylabel("Loadings")
 plt.ylim([-1, 1])
 
+# PC 2
 plt.sca(axes[1])
 plt.bar(range(n_features), sklearn_loadings[:, 1], align="center")
 plt.title("Loadings for PC 2")
