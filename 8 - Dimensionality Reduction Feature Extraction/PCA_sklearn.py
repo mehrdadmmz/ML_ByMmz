@@ -114,3 +114,10 @@ plt.legend(loc='lower left')
 # Adjust layout and display the plots
 plt.tight_layout()
 plt.show()
+
+# accessig the explained variance ratio by setting n_components = None
+# explained variance ratio helps in understanding the contribution of 
+# each principal component to the overall data variability
+pca = PCA(n_components=None)
+X_train_pca = pca.fit_transform(X_train_std)
+print(pca.explained_variance_ratio_)
