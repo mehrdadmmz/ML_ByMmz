@@ -1,3 +1,10 @@
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
+from matplotlib.colors import ListedColormap
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
 """
 LDA (linear discriminant analysis) like PCA is a linear transformation technique that can reduce 
 the number of dimensions in a dataset, Unlike PCA which was unsupervised, LDA is a supervised method. 
@@ -14,3 +21,31 @@ transformation matrix, W; the eigenvectors are the columns of this matrix.
 7. Project the examples onto the new feature subspace using the transformation matrix, W.
 """
 
+
+# Load the dataset
+df_wine = pd.read_csv('https://archive.ics.uci.edu/ml/'
+                   'machine-learning-databases/wine/wine.data', 
+                   header=None)
+
+# Setting up the columns
+df_wine.columns = ['Class label', 'Alcohol',
+                'Malic acid', 'Ash',
+                'Alcalinity of ash', 'Magnesium',
+                'Total phenols', 'Flavanoids',
+                'Nonflavanoid phenols',
+                'Proanthocyanins',
+                'Color intensity', 'Hue',
+                'OD280/OD315 of diluted wines',
+                'Proline']
+
+# split the data
+X, y = df_wine.iloc[:, 1:].values, df_wine.iloc[:, 0].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size=0.3, 
+                                                    random_state=0, 
+                                                    stratify=y)
+
+# Standardize the dataset
+stdscl = StandardScaler()
+X_train_std = stdscl.fit_transform(X_train) 
+X_test_std = stdscl.transform(X_test)
