@@ -92,6 +92,9 @@ lr = LogisticRegression(multi_class='ovr',
 X_train_pca = pca.fit_transform(X_train_std)
 X_test_pca = pca.transform(X_test_std)
 
+# Train the logistic regression model
+lr.fit(X_train_pca, y_train)
+
 # Create subplots: 1 row, 2 columns 
 fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 
