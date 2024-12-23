@@ -49,3 +49,13 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
 stdscl = StandardScaler()
 X_train_std = stdscl.fit_transform(X_train) 
 X_test_std = stdscl.transform(X_test)
+
+# computing mean vectors
+# 
+# Set printing options
+# These options determine the way floating point numbers, arrays and other NumPy objects are displayed.
+np.set_printoptions(precision=4)
+mean_vecs = []
+for label in range(1, 4): 
+    mean_vecs.append(np.mean(X_train_std[y_train == label], axis=0))
+    print(f"MV {label}: {mean_vecs[label - 1]}\n")
