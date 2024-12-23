@@ -97,3 +97,40 @@ print("\nEigenvalues in descending order: \n")
 # In LDA, the number of linear discriminants is at most c-1 with c being the number of classes
 for eigen_val in eigen_pairs: 
     print(eigen_val[0])
+
+# measure how much of the class-discriminatory information is captured by the linear discriminants
+# (eigenvectors), let’s plot the linear discriminants by decreasing eigenvalues
+tot = sum(eigen_vals.real)
+discr = [(i / tot) for i in sorted(eigen_vals.real, reverse=True)]
+cum_discr = np.cumsum(discr)
+
+# We can see that the first two linear discriminants alone capture 100 percent of the useful
+# information in the Wine training dataset
+plt.bar(range(1, 14), discr, align="center", label="Individual discriminability")
+plt.step(range(1, 14), cum_discr, where='mid', label="Cumulative discriminability")
+plt.ylabel('"Discriminability" ratio')
+plt.xlabel("Linear Discriminants")
+plt.ylim([-0.1, 1.1])
+plt.legend(loc="best")
+plt.tight_layout()
+plt.show()
+
+# Stacking the two most discriminative eigenvector coulumns to create the transformation matrix W: 
+W = np.hstack((eigen_pairs[0][1][:, np.newaxis].real, 
+               eigen_pairs[1][1][:, np.newaxis].real))
+print("Matrix W: \n", W)
+
+# Projecting examples onto the new feature space: X' = XW
+X_train_lda = X_train_std.dot(W)
+colors = ['r', 'b', 'g']
+markers = ['o', 's', '^']
+for l, c, m in zip(np.unique(y_train), colors, markers): 
+    plt.scatter(X_train_lda[y_train == l, 0], 
+                X_train_lda[y_train == l, 1] * (-1), 
+                c=c, label=f'Class {l}', marker=m)
+
+plt.xlabel('LD 1')
+plt.ylabel('LD 2')
+plt.legend(loc='lower right')
+plt.tight_layout()
+plt.show()
