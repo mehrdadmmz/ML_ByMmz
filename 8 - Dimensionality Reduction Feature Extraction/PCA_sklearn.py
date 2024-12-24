@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA
 
 
 
-"""PCA 
+"""PCA --> Unsupervised linear transformation technique 
 
 1. Standardize the d-dimensional dataset.
 2. Construct the covariance matrix.
