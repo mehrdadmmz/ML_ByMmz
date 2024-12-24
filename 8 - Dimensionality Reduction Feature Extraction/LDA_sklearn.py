@@ -8,8 +8,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
 
-"""
-LDA (linear discriminant analysis) like PCA is a linear transformation technique that can reduce 
+""" LDA --> Supervised linear transformation technique 
+
+(linear discriminant analysis) like PCA is a linear transformation technique that can reduce 
 the number of dimensions in a dataset, Unlike PCA which was unsupervised, LDA is a supervised method. 
 SO, it takes class label information into account. 
 
@@ -21,8 +22,7 @@ Inner working of LDF:
 5. Sort the eigenvalues by decreasing order to rank the corresponding eigenvectors.
 6. Choose the k eigenvectors that correspond to the k largest eigenvalues to construct a d×k-dimensional
 transformation matrix, W; the eigenvectors are the columns of this matrix.
-7. Project the examples onto the new feature subspace using the transformation matrix, W.
-"""
+7. Project the examples onto the new feature subspace using the transformation matrix, W. """
 
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
