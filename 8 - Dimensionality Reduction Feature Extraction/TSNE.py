@@ -35,6 +35,7 @@ tsne = TSNE(n_components=2, init='pca', random_state=123)
 # projecting 64-dim dataset onto 2-dim space
 X_digits_tsne = tsne.fit_transform(X_digits)
 
+# This function visualizes the reduced 2D data (x) using different colors for each digit label (colors).
 def plot_projection(x, colors): 
     
     f = plt.figure(figsize=(8, 8))
