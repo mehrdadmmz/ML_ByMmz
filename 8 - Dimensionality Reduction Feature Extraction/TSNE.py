@@ -4,7 +4,8 @@ from sklearn.datasets import load_digits
 from sklearn.manifold import TSNE
 
 """ t-distributed stochastic neighbour embedding (t-SNE): 
-non-linear dimensionality reduction technique. TSNE is best for Visualizing high-dimensional data in 2D or 3D.
+non-linear dimensionality reduction technique. TSNE is best for Visualizing high-dimensional data in 2D or 3D. 
+Like PCA, t-SNE is an unsupervised method. 
 
 The development and application of nonlinear dimensionality reduction techniques is also often
 referred to as manifold learning, where a manifold refers to a lower dimensional topological space
