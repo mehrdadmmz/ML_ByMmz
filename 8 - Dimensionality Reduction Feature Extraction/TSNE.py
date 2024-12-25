@@ -40,13 +40,19 @@ def plot_projection(x, colors):
     
     f = plt.figure(figsize=(8, 8))
     ax = plt.subplot(aspect='equal')
-    
+
+    # Iterates over the digit classes (0–9)
     for i in range(10): 
-        plt.scatter(x[colors == i, 0], x[colors == i, 1])
+        plt.scatter(x[colors == i, 0], x[colors == i, 1]) # Plots these points in the 2D space.
     
     for i in range(10):
+        # Computes the median position of all points for a given digit class in 2D space
         xtext, ytext = np.median(x[colors == i, :], axis=0)
+        # Places the digit label (str(i)) at the median position for better visibility
         txt = ax.text(xtext, ytext, str(i), fontsize=24)
+        # Adds a white outline around the text labels for better contrast with the background.
+        # PathEffects.Stroke: Creates the outline.
+        # PathEffects.Normal: Ensures the text is displayed normally.
         txt.set_path_effects([PathEffects.Stroke(linewidth=5, foreground='w'), 
                               PathEffects.Normal()])
         
