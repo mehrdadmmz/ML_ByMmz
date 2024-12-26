@@ -45,11 +45,11 @@ Finally, the LogisticRegression estimator was fit to the training data after it 
 via StandardScaler and PCA. Again, we should note that there is no limit to the number of
 intermediate steps in a pipeline; however, if we want to use the pipeline for prediction tasks, the last
 pipeline element has to be an estimator. '''
-pipeline_lr = make_pipeline(StandardScaler(), 
+pipe_lr = make_pipeline(StandardScaler(), 
                             PCA(n_components=2), 
                             LogisticRegression())
 
-pipeline_lr.fit(X_train, y_train)
-y_pred = pipeline_lr.predict(X_test)
-test_acc = pipeline_lr.score(X_test, y_test)
+pipe_lr.fit(X_train, y_train)
+y_pred = pipe_lr.predict(X_test)
+test_acc = pipe_lr.score(X_test, y_test)
 print(f"Test accuracy: {test_acc:.3f}")
