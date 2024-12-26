@@ -36,6 +36,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     random_state=1)
 
 # We can chain objects in a pipeline 
+''' When we execute the fit method on the pipe_lr pipeline in the following code example,
+StandardScaler first performed fit and transform calls on the training data. Second, the transformed
+training data was passed on to the next object in the pipeline, PCA. Similar to the previous
+step, PCA also executed fit and transform on the scaled input data and passed it to the final element
+of the pipeline, the estimator.
+Finally, the LogisticRegression estimator was fit to the training data after it underwent transformations
+via StandardScaler and PCA. Again, we should note that there is no limit to the number of
+intermediate steps in a pipeline; however, if we want to use the pipeline for prediction tasks, the last
+pipeline element has to be an estimator. '''
 pipeline_lr = make_pipeline(StandardScaler(), 
                             PCA(n_components=2), 
                             LogisticRegression())
