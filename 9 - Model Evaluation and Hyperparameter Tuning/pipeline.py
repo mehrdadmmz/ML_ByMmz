@@ -4,9 +4,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.model_selection import learning_curve, validation_curve
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split
 
 """We will be working with the Breast Cancer Wisconsin dataset, which contains 569 examples
 of malignant and benign tumor cells. The first two columns in the dataset store the unique ID
