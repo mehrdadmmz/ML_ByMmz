@@ -9,9 +9,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
-from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.model_selection import learning_curve, validation_curve
+from sklearn.model_selection import train_test_split, learning_curve
 
 # Loading the Breast Cancer Wisconsin dataset 
 df = pd.read_csv('https://archive.ics.uci.edu/ml/'
