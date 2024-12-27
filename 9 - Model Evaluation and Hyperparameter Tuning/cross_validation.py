@@ -59,6 +59,12 @@ print(f"Test accuracy: {test_acc:.3f}")
 
 # Performing stratified k-fold cross-validation 
 kfold = StratifiedKFold(n_splits=10).split(X_train, y_train)
+
+
+"""If we set the n_jobs parameter to 1, only one CPU will be used to evaluate the performances, just 
+like in our StratifiedKFold example previously. However, by setting n_jobs=2, we could distribute 
+the 10 rounds of cross-validation to two CPUs (if available on our machine), and by setting n_jobs=-1, 
+we can use all available CPUs on our machine to do the computation in parallel."""
 scores = cross_val_score(estimator=pipe_lr, 
                          X=X_train, 
                          y=y_train, 
