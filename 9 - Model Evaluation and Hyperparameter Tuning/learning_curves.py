@@ -32,52 +32,60 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     stratify=y, 
                                                     random_state=1)
 
-# We can chain objects in a pipeline 
+# Pipeline setup: StandardScaler for feature scaling followed by Logistic Regression
 pipe_lr = make_pipeline(StandardScaler(), 
-                        LogisticRegression(penalty='l2', 
-                                           max_iter=10_000))
+                        LogisticRegression(penalty='l2',      # L2 regularization to prevent overfitting
+                                           max_iter=10_000))  # Max iterations to ensure convergence
 
-train_sizes, train_scores, test_scores = learning_curve(estimator=pipe_lr, 
-                                                        X=X_train, 
-                                                        y=y_train, 
-                                                        train_sizes=np.linspace(0.1, 1.0, 10), 
-                                                        cv=10, 
-                                                        n_jobs=1)
+# Generate training sizes: 10 equally spaced values between 10% and 100% of the training dataset size
+# learning_curve evaluates model performance for increasing training dataset sizes
+train_sizes, train_scores, test_scores = learning_curve(estimator=pipe_lr,             
+                                                        X=X_train,                     
+                                                        y=y_train,                     
+                                                        train_sizes=np.linspace(0.1, 1.0, 10),  # Sizes of training subsets
+                                                        cv=10,                         # 10-fold cross-validation
+                                                        n_jobs=1                       # Use a single CPU core
+                                                    )
 
-train_mean = np.mean(train_scores, axis=1)
-train_std = np.std(train_scores, axis=1)
-test_mean = np.mean(test_scores, axis=1)
-test_std = np.std(test_scores, axis=1)
+# Calculate the mean and standard deviation of training accuracy for each training size
+train_mean = np.mean(train_scores, axis=1)  
+train_std = np.std(train_scores, axis=1)   
 
+# Calculate the mean and standard deviation of validation accuracy for each training size
+test_mean = np.mean(test_scores, axis=1)   
+test_std = np.std(test_scores, axis=1)    
+
+# Plot the learning curve for training accuracy
 plt.plot(train_sizes, 
-         train_mean, 
-         color='blue', 
-         marker='o', 
-         markersize=5, 
-         label='Training accuracy')
+         train_mean,               
+         color='blue',             
+         marker='o',               
+         markersize=5,             
+         label='Training accuracy')  
 plt.fill_between(train_sizes, 
-                 train_mean - train_std, 
-                 train_mean + train_std, 
-                 alpha=0.15, 
-                 color='blue')
+                 train_mean - train_std,  
+                 train_mean + train_std,  
+                 alpha=0.15,              
+                 color='blue')         
 
+# Plot the learning curve for validation accuracy
 plt.plot(train_sizes, 
-         test_mean, 
-         color='green', 
-         linestyle='--',
-         marker='s',
-         markersize=5, 
-         label='Validation accuracy')
+         test_mean,
+         color='green',            
+         linestyle='--',           
+         marker='s',               
+         markersize=5,             
+         label='Validation accuracy')  
 plt.fill_between(train_sizes, 
-                 test_mean - test_std, 
-                 test_mean + test_std, 
-                 alpha=0.15, 
-                 color='green')
+                 test_mean - test_std,   
+                 test_mean + test_std,   
+                 alpha=0.15,             
+                 color='green')          
 
-plt.grid()
-plt.xlabel('Number of training examples')
-plt.ylabel('Accuracy')
-plt.legend(loc='lower right')
+# Add gridlines, axis labels, and legend for better readability
+plt.grid()                              
+plt.xlabel('Number of training examples')  
+plt.ylabel('Accuracy')                 
+plt.legend(loc='lower right')          
 plt.ylim([0.8, 1.03])
 plt.show()
-
