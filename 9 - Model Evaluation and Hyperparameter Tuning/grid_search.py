@@ -1,4 +1,4 @@
-# Grid search 
+# Grid search cross-validation
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt
@@ -76,3 +76,10 @@ gs = gs.fit(X_train, y_train)
 # Output the best cross-validation accuracy score and the corresponding parameters
 print(gs.best_score_)    # Best accuracy score achieved during cross-validation
 print(gs.best_params_)   # Best combination of hyperparameters
+
+# Finally, we use the independent test dataset to estimate the performance of the best-selected model,
+# which is available via the best_estimator_ attribute of the GridSearchCV object
+# clf: classifier
+clf = gs.best_estimator_
+clf.fit(X_train, y_train)
+print(f'Test accuracy: {clf.score(X_test, y_test):.3f}')
