@@ -62,13 +62,13 @@ param_grid = [
 # - scoring: Use accuracy as the evaluation metric.
 # - cv: 10-fold cross-validation.
 # - refit: Automatically refit the best model on the entire training dataset after finding the best parameters.
-# - n_jobs: Set to 1 to use a single CPU core for the process.
+# - n_jobs: Set to -1 to use aall CPU cores for faster process.
 gs = GridSearchCV(estimator=pipe_svc, 
                   param_grid=param_grid, 
                   scoring='accuracy', 
                   cv=10, 
                   refit=True, 
-                  n_jobs=1)
+                  n_jobs=-1)
 
 # Fit the grid search to the training data to find the best hyperparameters
 gs = gs.fit(X_train, y_train)
