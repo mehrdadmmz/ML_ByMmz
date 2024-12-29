@@ -1,4 +1,6 @@
 # Grid search cross-validation
+# grid search is an exhaustive search, it is guaranteed to find the optimal hyperparameter configuration
+# if it is contained in the user-specified parameter grid.
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt
