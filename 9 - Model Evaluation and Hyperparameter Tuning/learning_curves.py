@@ -2,7 +2,7 @@
 Here, we will discuss how we can use learning curves to diagnose whether a learning algorithm
 has a problem with overfitting (high variance) or underfitting (high bias).
 
-Learning curves:   plotting training and test accuracies as a func of sameple size
+Learning curves:   plotting training and test accuracies as a func of sample size
 Validation curves: we vary the values of the model parameters like parameter C in logistic reg 
 """
 
