@@ -15,6 +15,27 @@ import numpy as np  # For numerical operations
 # Outer loop: Splits the data into training and test folds.
 # Inner loop: Performs hyperparameter tuning using cross-validation on the training fold.
 
+# Loading the Breast Cancer Wisconsin dataset 
+df = pd.read_csv('https://archive.ics.uci.edu/ml/'
+                 'machine-learning-databases'
+                 '/breast-cancer-wisconsin/wdbc.data',
+                 header=None)
+
+X, y = df.loc[:, 2:].values, df.loc[:, 1]
+
+# label encoding 
+le = LabelEncoder()
+
+# After encoding the class labels (diagnosis) in an array, y, the malignant tumors are now represented
+# as class 1, and the benign tumors are represented as class 0, respectively
+y = le.fit_transform(y) 
+
+# Splitting data 
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size=0.2, 
+                                                    stratify=y, 
+                                                    random_state=1)
+
 # Create a pipeline with feature scaling and an SVC model.
 pipe_svc = make_pipeline(StandardScaler(), 
                          SVC(random_state=1))  
