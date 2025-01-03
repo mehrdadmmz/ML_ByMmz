@@ -1,9 +1,7 @@
-# Import necessary libraries
-# Note: Enabling Halving Search CV is not required anymore in the latest version of scikit-learn.
-# Uncomment the line below if using an older version where explicit enabling is necessary.
-# from sklearn.experimental import enable_halving_search_cv  
+# Import necessary libraries 
 
 import scipy  # For generating distributions for hyperparameter tuning
+from sklearn.experimental import enable_halving_search_cv  
 from sklearn.model_selection import HalvingRandomSearchCV, HalvingGridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.pipeline import make_pipeline  # For creating machine learning pipelines
