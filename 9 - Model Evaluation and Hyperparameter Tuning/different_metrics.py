@@ -1,6 +1,6 @@
-import numpy as np  # For numerical operations
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np  # For numerical operations
 from sklearn.svm import SVC  # Support Vector Classifier
 from sklearn.pipeline import make_pipeline  # For creating machine learning pipelines
 from sklearn.preprocessing import StandardScaler  # For feature scaling
