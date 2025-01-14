@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np  # For numerical operations
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC  # Support Vector Classifier
 from sklearn.pipeline import make_pipeline  # For creating machine learning pipelines
-from sklearn.preprocessing import StandardScaler  # For feature scaling
+
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score, f1_score
+from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.metrics import matthews_corrcoef
 
 # Loading the Breast Cancer Wisconsin dataset 
